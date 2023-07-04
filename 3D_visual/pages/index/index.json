@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "xr-start": "../../components/xr-start/index",
+    "panel-ui":"/components/panel-ui/panel"
+  },
+  "disableScroll": true
+}

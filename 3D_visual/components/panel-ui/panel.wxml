@@ -1,0 +1,33 @@
+<view class="content">
+  <view class="img-box" bindtap="toggle">
+     <image src="{{imgScr}}" mode="aspectFit"  class="img"/>
+ </view>
+  <view class="box {{isPanel? 'animate' :'leave'}}">
+      <view class="item add-time">
+        <view >
+          <text class="positive addOne"  data-addone="1" bindtap="addHandle">+1</text>
+          <text class="negative addOne"  data-addone="-1" bindtap="addHandle">-1</text>
+        </view>
+        <view class="addFive">
+          <text class="positive addOne" data-addone="5" bindtap="addHandle">+5</text>
+          <text class="negative addOne" data-addone="-5" bindtap="addHandle">-5</text>
+        </view>
+      </view>
+
+      <view class="item show-time {{mode=='0' ? 'active-mode' :''}}" data-mode="0"  bindtap="seletMode">
+          {{minutes}}:{{seconds}}
+      </view>
+
+      <view class="item set-start">
+         <view class="go" bindtap="start">
+           启动 
+         </view>
+         <view class="outTime-go {{mode=='1' ? 'active-mode' :''}}" data-mode="1" bindtap="seletMode" >
+           <text> {{outMinutes}}:{{outSeconds}}</text> 分钟后煮饭
+         </view>
+      </view>
+
+    <!-- <text bindtap="controlHandle">turn off</text> -->
+  </view>
+
+</view>

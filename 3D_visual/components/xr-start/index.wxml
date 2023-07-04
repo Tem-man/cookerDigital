@@ -1,0 +1,69 @@
+<!--components/xr-start/index.wxml-->
+<xr-scene bind:ready="handleReady" render-system="alpha:false">
+  <xr-light type="ambient" position="0 1 0" color="1 1 1" intensity="4" />
+  <xr-light type="directional" position="0 1 0" rotation="40 70 0" color="1 1 1" intensity="6" 
+ cast-shadow />
+
+<xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded">
+
+  <xr-asset-load type="gltf" asset-id="smart_cooker" options="preserveRaw: true" src="/images/smart_cooker22.glb" />
+
+  <xr-asset-load type="gltf" asset-id="pointer" options="preserveRaw: true" src="/images/pointer_tem.glb" />
+ 
+
+</xr-assets>
+
+<xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded">
+ 
+</xr-assets>
+
+<!-- 电饭煲 -->
+<xr-gltf 
+  node-id="smart_cooker" position="0 -1 0" model="smart_cooker" 
+  id="helmet" bind:gltf-loaded="handleGLTFLoaded"
+/>
+
+
+<!-- 开关按钮 -->
+<xr-mesh node-id="cube" geometry="cube" position="-0.03 -1.15 0.7" rotation="0 {{btnY+90}} 0" scale="0.1 0.1 0.4" uniforms="u_baseColorFactor:0.191 0.456 0.867 1" bind:touch-shape="handleBtn" capsule-shape  />
+
+<!-- 指针 -->
+<xr-gltf 
+  node-id="pointer" position="0 {{temperature==0? -1.232:temperature}} 0" model="pointer" 
+  id="pointer" bind:gltf-loaded="handleGLTFLoaded"
+/>
+
+
+<!-- 粒子效果 -->
+<xr-asset-load type="texture" asset-id="point" src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/particles/point.png" />
+<!-- 烟雾 -->
+<xr-particle position="-0.1 -0.5 -0.35" visible="{{fog>=167}}"
+        capacity="100" emit-rate="5"
+        size="0.3 0.6" life-time="2.5 5" speed="0.1 0.5"
+        start-color="1 1 1 0.5" end-color="1 1 1 0.1"
+        emitter-type="ConeShape"
+        emitter-props="radius:0.1,radiusRange:0.1,heightRange:1.5,arc:90"
+        texture="point"
+      />
+
+  <!-- 点光源 -->
+  <xr-particle position="-0.15 -0.95 0.7" visible="{{isShowParticle}}"
+        capacity="1" emit-rate="1"
+        size="0.24" life-time="0.3" speed="0"
+        texture="point" start-color="0.92 0.09 0.09 1"
+      />
+
+  <xr-particle position="0.1 -0.95 0.7" visible="{{isStart ? isShowParticle:!isShowParticle}}"
+        capacity="1" emit-rate="1"
+        size="0.24" life-time="0.3" speed="0"
+        texture="point" start-color="0.925 0.891 0.098 1"
+      />
+
+
+<xr-camera
+  id="camera" position="0 1.5 4" target="smart_cooker" 
+  clear-color="0.13 0.13 0.13 1" camera-orbit-control="false"
+  isLockMove="true" 
+/>
+
+</xr-scene>
