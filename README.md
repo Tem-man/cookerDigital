@@ -2,4 +2,4 @@
 视频教程：
 固件：
 ![image](https://github.com/Tem-man/cookerDigital/blob/master/hardware_images/esp8266%E5%BC%80%E5%8F%91%E6%9D%BF.png)
-
+![image](hardware_images/sht30温湿度传感器.jpg)
